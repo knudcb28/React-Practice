@@ -1,8 +1,15 @@
 import Head from "next/head";
 import Button from "../components/Button";
 import ListComponent from "../components/ListComponent";
+import { useState } from "react";
 
 const Home = () => {
+  const [components, setComponents] = useState(["Sample Component"]);
+
+  function addComponent() {
+    setComponents([...components, "Sample Component"]);
+  }
+
   return (
     <div className="">
       <Head>
@@ -11,11 +18,13 @@ const Home = () => {
       </Head>
 
       <main>
-        <Button  />
-
-        <div className="flex space-x-2 flex-wrap">
-         <ListComponent />
-        </div>
+        <Button onClick={addComponent} />
+      <div className="flex flex-wrap justify-start">
+        {components.map((item, i) => (
+          <ListComponent key={i} text={item} />
+        ))}
+        
+      </div>
       </main>
     </div>
   );
