@@ -3,7 +3,6 @@ import Image from "next/image";
 import { getAnimalPhoto } from "../utils/getAnimalPhoto";
 
 const ListComponent = (props) => {
-  
   return (
     <div className="">
       <h1 className="text-white text-lg font-serif text-center bg-blue-800 rounded-xl p-3 m-3 w-[20rem] ">
