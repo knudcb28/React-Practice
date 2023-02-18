@@ -14,7 +14,7 @@ export const getAnimalPhoto = async () => {
       count: 3,
     })
     
-    console.log(photos.response)
     const unsplashPhotoUrls = photos?.response
+    console.log(unsplashPhotoUrls)
     return unsplashPhotoUrls
   }
