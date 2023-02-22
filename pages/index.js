@@ -5,7 +5,7 @@ import ImageComponent from "../components/ImageComponent";
 import { createApi } from "unsplash-js";
 
 const Home = () => {
-  const [animalPhoto, setAnimalPhoto] = useState([""]);
+  const [animalPhoto, setAnimalPhoto] = useState([]);
 
   const getAnimalPhoto = async () => {
     const unsplash = createApi({
@@ -21,10 +21,9 @@ const Home = () => {
       count: 1,
     });
 
-    const unsplashPhotoUrls = photos?.response[0].urls["small"];
-    console.log(unsplashPhotoUrls);
-    setAnimalPhoto([...animalPhoto, unsplashPhotoUrls]);
-    // if (unsplashPhotoUrls) setAnimalPhoto(unsplashPhotoUrls);
+    const unsplashPhotoUrl = photos?.response[0].urls["small"];
+    console.log(unsplashPhotoUrl);
+    if (unsplashPhotoUrl) setAnimalPhoto([...animalPhoto, unsplashPhotoUrl]);
   };
 
   return (
@@ -40,7 +39,7 @@ const Home = () => {
             getAnimalPhoto();
           }}
         />
-        <div className="flex flex-wrap justify-start">
+        <div className="flex flex-wrap justify-start bg-cover">
           {animalPhoto.map((item, i) => (
             <ImageComponent key={i} url={item} />
           ))}
