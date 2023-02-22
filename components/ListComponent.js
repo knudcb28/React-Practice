@@ -1,7 +1,3 @@
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import { getAnimalPhoto } from "../utils/getAnimalPhoto";
-
 const ListComponent = (props) => {
   return (
     <div className="">
