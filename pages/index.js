@@ -17,7 +17,7 @@ const Home = () => {
       topicIds: [""],
       featured: true,
       username: "",
-      query: "animals",
+      query: "animal",
       count: 1,
     });
 
@@ -34,12 +34,8 @@ const Home = () => {
       </Head>
 
       <main>
-        <Button
-          onClick={() => {
-            getAnimalPhoto();
-          }}
-        />
-        <div className="flex flex-wrap justify-start bg-cover">
+        <Button onClick={getAnimalPhoto} />
+        <div className="grid grid-cols-1 grid-rows-3 gap-[0.25rem] sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {animalPhoto.map((item, i) => (
             <ImageComponent key={i} url={item} />
           ))}
