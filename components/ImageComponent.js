@@ -35,15 +35,16 @@ const ImageComponent = ({ url }) => {
     }
   };
 
+  // This function invokes both the updatecount and set style function as a onClick event handler
+  const handleClick = () => {
+    updateCount();
+    changeStyle();
+  };
+
   return (
     <div className="relative bg-center bg-no-repeat ">
       <img src={url} className="h-[100%] w-[100%] object-cover" />
-      <div
-        onClick={() => {
-          updateCount();
-          changeStyle();
-        }}
-      >
+      <div onClick={handleClick}>
         <Image src={heartIcon} className={style} alt="animal photo" />
       </div>
       {/* <AiFillHeart className="absolute bottom-0 left-0 bg-white" size={50}/>  */}

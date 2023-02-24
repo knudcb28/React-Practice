@@ -5,8 +5,11 @@ import ImageComponent from "../components/ImageComponent";
 import { createApi } from "unsplash-js";
 
 const Home = () => {
+
+ // initial state with an empty array - showing no photos to the user
   const [animalPhoto, setAnimalPhoto] = useState([]);
 
+// function that gets a random animal photo from the unsplash API
   const getAnimalPhoto = async () => {
     const unsplash = createApi({
       accessKey: process.env.NEXT_PUBLIC_UNSPLASH_API_KEY,
@@ -23,8 +26,18 @@ const Home = () => {
 
     const unsplashPhotoUrl = photos?.response[0].urls["small"];
     console.log(unsplashPhotoUrl);
-    if (unsplashPhotoUrl) setAnimalPhoto([...animalPhoto, unsplashPhotoUrl]);
+    return unsplashPhotoUrl;
   };
+
+// onClick event handler function, updates state to include previous animal photos, and adds a new one to the array
+  const handleClick = async () => {
+    setAnimalPhoto([...animalPhoto, await getAnimalPhoto()])
+  }
+
+// map through animalPhoto array and display photos to user from Image Component
+  const renderedAnimals = animalPhoto.map((item, i) => (
+    <ImageComponent key={i} url={item} />
+  ))
 
   return (
     <div className="">
@@ -34,11 +47,9 @@ const Home = () => {
       </Head>
 
       <main>
-        <Button onClick={getAnimalPhoto} />
+        <Button onClick={handleClick} />
         <div className="grid grid-cols-1 grid-rows-3 gap-[0.25rem] sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {animalPhoto.map((item, i) => (
-            <ImageComponent key={i} url={item} />
-          ))}
+          {renderedAnimals}
         </div>
       </main>
     </div>
